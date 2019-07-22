@@ -22,7 +22,33 @@
 * SOFTWARE.
 */
 
-/**
- * Package version
- */
-export const PackageVersion: string = "19.5.0";
+import { expect } from "chai";
+import "mocha";
+import * as TestContext from "../test_context";
+
+describe("formats_api", () => {
+    
+    before(async () => {
+        process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = "0"
+        await TestContext.uploadTestFiles();
+    });
+
+    afterEach(async function() {
+        await TestContext.cleanupTempFiles();
+    });
+
+    describe("test_get_supported_file_formats", () => {
+        it("should return list of supported formats", () => {            
+            const infoApi = TestContext.getInfoApi();
+
+            return infoApi.getSupportedFileFormats()
+                .then((result) => {                   
+                    for (const format of result.formats) {
+                        expect(format.fileFormat).to.not.equal("");
+                        expect(format.extension).to.not.equal("");
+                    }
+                });
+        });
+    });
+    
+});

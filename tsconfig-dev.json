@@ -16,9 +16,11 @@
             "es6",
             "scripthost"
         ],
-        "outDir": "lib"
+        "outDir": "lib",
+        "rootDir": "./"
     },
     "include": [
-        "src/**/*"
+        "src/**/*",
+        "test/**/*"
     ]
 }

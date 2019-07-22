@@ -22,7 +22,30 @@
 * SOFTWARE.
 */
 
-/**
- * Package version
- */
-export const PackageVersion: string = "19.5.0";
+import { expect } from "chai";
+import "mocha";
+
+import { Configuration } from "../../src/configuration";
+import { InfoApi } from "../../src/comparison_api";
+
+describe("auth_api", () => {
+
+    describe("test_auth_error", () => {
+        it("should throw when app sid not found", () => {    
+            const settings = require("../test_settings.json");
+            const appSid = "test";
+            const appKey = "test";
+          
+            const config = new Configuration(appSid, appKey);
+            config.apiBaseUrl = settings.ApiBaseUrl;
+            const infoApi = InfoApi.fromConfig(config);
+
+            return infoApi.getSupportedFileFormats()
+                .catch((error) => {
+                    expect(error.message).equal("invalid_client");
+                });
+        });
+
+    });
+
+});
