@@ -1,7 +1,7 @@
 /*
 * The MIT License (MIT)
 *
-* Copyright (c) 2003-2019 Aspose Pty Ltd
+* Copyright (c) 2003-2020 Aspose Pty Ltd
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 
 import { expect } from "chai";
 import "mocha";
-import { Options, Settings, ItemsStyle, PostChangesRequest} from "../../src/model";
+import { ComparisonOptions, Settings, ItemsStyle, PostChangesRequest} from "../../src/model";
 import * as TestContext from "../test_context";
 import { TestFile } from "../test_file";
 
@@ -74,13 +74,13 @@ describe("comparison_changes_api", () => {
         it("test_changes_note", async () => {              
             var options = GetComparisonOptions(TestFile.SourceNote, TestFile.TargetNote)
             var response = await TestContext.getCompareApi().postChanges(new PostChangesRequest(options));
-            expect(response.length).equal(8);
+            expect(response.length).equal(12);
         });
         
         it("test_changes_note_protected", async () => {              
             var options = GetComparisonOptions(TestFile.SourceNoteProtected, TestFile.TargetNoteProtected)
             var response = await TestContext.getCompareApi().postChanges(new PostChangesRequest(options));
-            expect(response.length).equal(8);            
+            expect(response.length).equal(12);            
         });
         
         it("test_changes_pdf", async () => {              
@@ -115,7 +115,7 @@ describe("comparison_changes_api", () => {
 
         function GetComparisonOptions(source: TestFile, target: TestFile)
         {
-            let options = new Options();
+            let options = new ComparisonOptions();
             options.sourceFile = source.ToFileInfo();
             options.outputPath = "/resultFilePath/" + source.fileName;
             
@@ -125,13 +125,12 @@ describe("comparison_changes_api", () => {
             options.settings.styleChangeDetection = true;
             options.settings.useFramesForDelInsElements = false;
             options.settings.metaData = undefined;
-            options.settings.detailLevel = "Low";
+            options.settings.detailsLevel = Settings.DetailsLevelEnum.Low;
             options.settings.diagramMasterSetting = undefined;
             options.settings.calculateComponentCoordinates = false;
-            options.settings.cloneMetadata = "Default";
-            options.settings.markDeletedInsertedContentDeep = false;
+            options.settings.cloneMetadata = Settings.CloneMetadataEnum.Default;            
             options.settings.password = "1111";
-            options.settings.passwordSaveOption = "User";
+            options.settings.passwordSaveOption = Settings.PasswordSaveOptionEnum.User;
             
             options.settings.deletedItemsStyle = new ItemsStyle();
             options.settings.deletedItemsStyle.beginSeparatorString = "";
@@ -151,14 +150,14 @@ describe("comparison_changes_api", () => {
             options.settings.insertedItemsStyle.italic = false;
             options.settings.insertedItemsStyle.strikeThrough = false;
             
-            options.settings.styleChangedItemsStyle = new ItemsStyle();
-            options.settings.styleChangedItemsStyle.beginSeparatorString = "";
-            options.settings.styleChangedItemsStyle.endSeparatorString = "";
-            options.settings.styleChangedItemsStyle.fontColor = "65280";
-            options.settings.styleChangedItemsStyle.highlightColor = "65280";
-            options.settings.styleChangedItemsStyle.bold = false;
-            options.settings.styleChangedItemsStyle.italic = false;
-            options.settings.styleChangedItemsStyle.strikeThrough = false;
+            options.settings.changedItemsStyle = new ItemsStyle();
+            options.settings.changedItemsStyle.beginSeparatorString = "";
+            options.settings.changedItemsStyle.endSeparatorString = "";
+            options.settings.changedItemsStyle.fontColor = "65280";
+            options.settings.changedItemsStyle.highlightColor = "65280";
+            options.settings.changedItemsStyle.bold = false;
+            options.settings.changedItemsStyle.italic = false;
+            options.settings.changedItemsStyle.strikeThrough = false;
         
             options.targetFiles = [target.ToFileInfo()];
 

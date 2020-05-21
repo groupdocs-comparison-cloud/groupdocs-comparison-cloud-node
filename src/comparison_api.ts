@@ -1,7 +1,7 @@
 /*
 * The MIT License (MIT)
 *
-* Copyright (c) 2003-2019 Aspose Pty Ltd
+* Copyright (c) 2003-2020 Aspose Pty Ltd
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -90,7 +90,7 @@ export class CompareApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: Serializer.serialize(requestObj.comparisonOptions, requestObj.comparisonOptions.constructor.name === "Object" ? "Options" : requestObj.comparisonOptions.constructor.name),
+            body: Serializer.serialize(requestObj.comparisonOptions, requestObj.comparisonOptions.constructor.name === "Object" ? "ComparisonOptions" : requestObj.comparisonOptions.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -120,7 +120,7 @@ export class CompareApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: Serializer.serialize(requestObj.comparisonOptions, requestObj.comparisonOptions.constructor.name === "Object" ? "Options" : requestObj.comparisonOptions.constructor.name),
+            body: Serializer.serialize(requestObj.comparisonOptions, requestObj.comparisonOptions.constructor.name === "Object" ? "ComparisonOptions" : requestObj.comparisonOptions.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -140,9 +140,9 @@ export class CompareApi {
         const localVarPath = this.configuration.getServerUrl() + "/comparison/updates";
         const queryParameters: any = {};
 
-        // verify required parameter 'requestObj.comparisonOptions' is not null or undefined
-        if (requestObj.comparisonOptions === null || requestObj.comparisonOptions === undefined) {
-            throw new Error('Required parameter "requestObj.comparisonOptions" was null or undefined when calling putChangesDocument.');
+        // verify required parameter 'requestObj.updatesOptions' is not null or undefined
+        if (requestObj.updatesOptions === null || requestObj.updatesOptions === undefined) {
+            throw new Error('Required parameter "requestObj.updatesOptions" was null or undefined when calling putChangesDocument.');
         }
         
         const requestOptions: request.Options = {
@@ -150,7 +150,7 @@ export class CompareApi {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: Serializer.serialize(requestObj.comparisonOptions, requestObj.comparisonOptions.constructor.name === "Object" ? "UpdatesOptions" : requestObj.comparisonOptions.constructor.name),
+            body: Serializer.serialize(requestObj.updatesOptions, requestObj.updatesOptions.constructor.name === "Object" ? "UpdatesOptions" : requestObj.updatesOptions.constructor.name),
         };
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
@@ -368,7 +368,7 @@ export class FileApi {
         }
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -473,7 +473,7 @@ export class FolderApi {
         
         localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", requestObj.storageName);
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,
@@ -616,6 +616,36 @@ export class InfoApi {
      */
     private constructor(config: Configuration) {
         this.configuration = config;
+    }
+
+    /**
+     * Gets document information
+     * @param requestObj contains request parameters
+     */
+    public async getDocumentInfo(requestObj: model.GetDocumentInfoRequest): Promise<model.InfoResult> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getDocumentInfo.');
+        }
+
+        const localVarPath = this.configuration.getServerUrl() + "/comparison/info";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.fileInfo' is not null or undefined
+        if (requestObj.fileInfo === null || requestObj.fileInfo === undefined) {
+            throw new Error('Required parameter "requestObj.fileInfo" was null or undefined when calling getDocumentInfo.');
+        }
+        
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: Serializer.serialize(requestObj.fileInfo, requestObj.fileInfo.constructor.name === "Object" ? "FileInfo" : requestObj.fileInfo.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result =  Serializer.deserialize(response.body, "InfoResult");
+        return Promise.resolve(result);
     }
 
     /**

@@ -1,6 +1,6 @@
 {
   "name": "groupdocs-comparison-cloud",
-  "version": "19.5.0",
+  "version": "20.5.0",
   "description": "GroupDocs.Comparison Cloud SDK for Node.js",
   "homepage": "https://products.groupdocs.cloud/comparison",
   "author": {
@@ -31,19 +31,18 @@
     "build:package": "npm pack"
   },
   "dependencies": {
-    "@types/request": "^2.48.2",
-    "request": "^2.88.0",
+    "@types/request": "^2.48.4",
+    "request": "^2.88.2",
     "request-debug": "^0.2.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.1.7",
-    "@types/mocha": "^5.2.7",
-    "@types/node": "^12.6.6",
-    "asposestoragecloud": "^1.0.5",
+    "@types/chai": "^4.2.9",
+    "@types/mocha": "^2.2.44",
+    "@types/node": "^10.17.15",
     "chai": "^4.2.0",
-    "mocha": "^6.1.4",
-    "ts-node": "^8.3.0",
-    "tslint": "^5.18.0",
-    "typescript": "^3.5.3"
+    "mocha": "^7.0.1",
+    "ts-node": "^8.6.2",
+    "tslint": "^6.1.0",
+    "typescript": "^3.7.5"
   }
 }

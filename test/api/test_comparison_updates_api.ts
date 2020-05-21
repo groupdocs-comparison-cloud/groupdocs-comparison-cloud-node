@@ -1,7 +1,7 @@
 /*
 * The MIT License (MIT)
 *
-* Copyright (c) 2003-2019 Aspose Pty Ltd
+* Copyright (c) 2003-2020 Aspose Pty Ltd
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -44,19 +44,19 @@ describe("comparison_updates_api", () => {
         it("test_comparison_updates_cells", async () => {              
             var options = GetComparisonOptions(TestFile.SourceCell, TestFile.TargetCell)
             var response = await TestContext.getCompareApi().putChangesDocument(new PutChangesDocumentRequest(options));
-            expect(response.href).equal(options.outputPath);
+            expect(response.rel).equal(options.outputPath);
         });
 
         it("test_comparison_updates_diagram", async () => {              
             var options = GetComparisonOptions(TestFile.SourceDiagram, TestFile.TargetDiagram)
             var response = await TestContext.getCompareApi().putChangesDocument(new PutChangesDocumentRequest(options));
-            expect(response.href).equal(options.outputPath);
+            expect(response.rel).equal(options.outputPath);
         });
         
         it("test_comparison_updates_email", async () => {              
             var options = GetComparisonOptions(TestFile.SourceEmail, TestFile.TargetEmail)
             var response = await TestContext.getCompareApi().putChangesDocument(new PutChangesDocumentRequest(options));
-            expect(response.href).equal(options.outputPath);
+            expect(response.rel).equal(options.outputPath);
         });
         
         // Type casting bug, fixed in Comparison 19.4
@@ -64,55 +64,55 @@ describe("comparison_updates_api", () => {
         // it("test_comparison_updates_html", async () => {              
         //     var options = GetComparisonOptions(TestFile.SourceHtml, TestFile.TargetHtml)
         //     var response = await TestContext.getCompareApi().putChangesDocument(new PutChangesDocumentRequest(options));
-        //     expect(response.href).equal(options.outputPath);
+        //     expect(response.rel).equal(options.outputPath);
         // });
         
         // it("test_comparison_updates_image", async () => {              
         //     var options = GetComparisonOptions(TestFile.SourceImage, TestFile.TargetImage)
         //     var response = await TestContext.getCompareApi().putChangesDocument(new PutChangesDocumentRequest(options));
-        //     expect(response.href).equal(options.outputPath);
+        //     expect(response.rel).equal(options.outputPath);
         // });
         
         it("test_comparison_updates_note", async () => {              
             var options = GetComparisonOptions(TestFile.SourceNote, TestFile.TargetNote)
             var response = await TestContext.getCompareApi().putChangesDocument(new PutChangesDocumentRequest(options));
-            expect(response.href).equal(options.outputPath);
+            expect(response.rel).equal(options.outputPath);
         });
         
         it("test_comparison_updates_note_protected", async () => {              
             var options = GetComparisonOptions(TestFile.SourceNoteProtected, TestFile.TargetNoteProtected)
             var response = await TestContext.getCompareApi().putChangesDocument(new PutChangesDocumentRequest(options));
-            expect(response.href).equal(options.outputPath);
+            expect(response.rel).equal(options.outputPath);
         });
         
         it("test_comparison_updates_pdf", async () => {              
             var options = GetComparisonOptions(TestFile.SourcePdf, TestFile.TargetPdf)
             var response = await TestContext.getCompareApi().putChangesDocument(new PutChangesDocumentRequest(options));
-            expect(response.href).equal(options.outputPath);
+            expect(response.rel).equal(options.outputPath);
         });
         
         it("test_comparison_updates_pdf_protected", async () => {              
             var options = GetComparisonOptions(TestFile.SourcePdfProtected, TestFile.TargetPdfProtected)
             var response = await TestContext.getCompareApi().putChangesDocument(new PutChangesDocumentRequest(options));
-            expect(response.href).equal(options.outputPath);
+            expect(response.rel).equal(options.outputPath);
         });
         
         it("test_comparison_updates_text", async () => {              
             var options = GetComparisonOptions(TestFile.SourceText, TestFile.TargetText)
             var response = await TestContext.getCompareApi().putChangesDocument(new PutChangesDocumentRequest(options));
-            expect(response.href).equal(options.outputPath);
+            expect(response.rel).equal(options.outputPath);
         });
 
         it("test_comparison_updates_word", async () => {              
             var options = GetComparisonOptions(TestFile.SourceWord, TestFile.TargetWord)
             var response = await TestContext.getCompareApi().putChangesDocument(new PutChangesDocumentRequest(options));
-            expect(response.href).equal(options.outputPath);
+            expect(response.rel).equal(options.outputPath);
         });
         
         it("test_comparison_updates_word_protected", async () => {              
             var options = GetComparisonOptions(TestFile.SourceWordProtected, TestFile.TargetWordProtected)
             var response = await TestContext.getCompareApi().putChangesDocument(new PutChangesDocumentRequest(options));
-            expect(response.href).equal(options.outputPath);
+            expect(response.rel).equal(options.outputPath);
         });        
 
         function GetComparisonOptions(source: TestFile, target: TestFile)
@@ -127,13 +127,12 @@ describe("comparison_updates_api", () => {
             options.settings.styleChangeDetection = true;
             options.settings.useFramesForDelInsElements = false;
             options.settings.metaData = undefined;
-            options.settings.detailLevel = "Low";
+            options.settings.detailsLevel = Settings.DetailsLevelEnum.Low;
             options.settings.diagramMasterSetting = undefined;
             options.settings.calculateComponentCoordinates = false;
-            options.settings.cloneMetadata = "Default";
-            options.settings.markDeletedInsertedContentDeep = false;
+            options.settings.cloneMetadata = Settings.CloneMetadataEnum.Default;            
             options.settings.password = "1111";
-            options.settings.passwordSaveOption = "User";
+            options.settings.passwordSaveOption = Settings.PasswordSaveOptionEnum.User;
             
             options.settings.deletedItemsStyle = new ItemsStyle();
             options.settings.deletedItemsStyle.beginSeparatorString = "";
@@ -153,23 +152,23 @@ describe("comparison_updates_api", () => {
             options.settings.insertedItemsStyle.italic = false;
             options.settings.insertedItemsStyle.strikeThrough = false;
             
-            options.settings.styleChangedItemsStyle = new ItemsStyle();
-            options.settings.styleChangedItemsStyle.beginSeparatorString = "";
-            options.settings.styleChangedItemsStyle.endSeparatorString = "";
-            options.settings.styleChangedItemsStyle.fontColor = "65280";
-            options.settings.styleChangedItemsStyle.highlightColor = "65280";
-            options.settings.styleChangedItemsStyle.bold = false;
-            options.settings.styleChangedItemsStyle.italic = false;
-            options.settings.styleChangedItemsStyle.strikeThrough = false;
+            options.settings.changedItemsStyle = new ItemsStyle();
+            options.settings.changedItemsStyle.beginSeparatorString = "";
+            options.settings.changedItemsStyle.endSeparatorString = "";
+            options.settings.changedItemsStyle.fontColor = "65280";
+            options.settings.changedItemsStyle.highlightColor = "65280";
+            options.settings.changedItemsStyle.bold = false;
+            options.settings.changedItemsStyle.italic = false;
+            options.settings.changedItemsStyle.strikeThrough = false;
         
             options.targetFiles = [target.ToFileInfo()];
             
             let cInfo1 = new ChangeInfo();
             cInfo1.id = 0;
-            cInfo1.comparisonAction = "Accept";
+            cInfo1.comparisonAction = ChangeInfo.ComparisonActionEnum.Accept;
             let cInfo2 = new ChangeInfo();
             cInfo2.id = 1;
-            cInfo2.comparisonAction = "Reject";
+            cInfo2.comparisonAction = ChangeInfo.ComparisonActionEnum.Reject;
             
             options.changes = [cInfo1, cInfo2];
 

@@ -1,7 +1,7 @@
 /*
 * The MIT License (MIT)
 *
-* Copyright (c) 2003-2019 Aspose Pty Ltd
+* Copyright (c) 2003-2020 Aspose Pty Ltd
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -39,16 +39,21 @@ export class ChangeInfo {
         {
             name: "comparisonAction",
             baseName: "comparisonAction",
-            type: "string",
+            type: "ChangeInfo.ComparisonActionEnum",
         },        
         {
-            name: "comparisonTypeChanged",
-            baseName: "comparisonTypeChanged",
-            type: "string",
+            name: "type",
+            baseName: "type",
+            type: "ChangeInfo.TypeEnum",
         },        
         {
             name: "text",
             baseName: "text",
+            type: "string",
+        },        
+        {
+            name: "targetText",
+            baseName: "targetText",
             type: "string",
         },        
         {
@@ -60,6 +65,16 @@ export class ChangeInfo {
             name: "styleChangeInfo",
             baseName: "styleChangeInfo",
             type: "Array<StyleChangeInfo>",
+        },        
+        {
+            name: "pageInfo",
+            baseName: "pageInfo",
+            type: "PageInfo",
+        },        
+        {
+            name: "box",
+            baseName: "box",
+            type: "Rectangle",
         }    ];
 
     /**
@@ -77,17 +92,22 @@ export class ChangeInfo {
     /**
      * Action (accept or reject). This field shows comparison what to do with this change
      */
-    public comparisonAction: string;
+    public comparisonAction: ChangeInfo.ComparisonActionEnum;
     
     /**
      * Type of change (Inserted, Deleted or StyleChanged)
      */
-    public comparisonTypeChanged: string;
+    public type: ChangeInfo.TypeEnum;
     
     /**
      * Text of changed element
      */
     public text: string;
+    
+    /**
+     * Changed text of target doc
+     */
+    public targetText: string;
     
     /**
      * Array of authors who made this change (used for multi comparison)
@@ -99,12 +119,136 @@ export class ChangeInfo {
      */
     public styleChangeInfo: Array<StyleChangeInfo>;
     
+    /**
+     * Page where current change is placed
+     */
+    public pageInfo: PageInfo;
+    
+    /**
+     * Coordinates of changed element
+     */
+    public box: Rectangle;
+    
     public constructor(init?: Partial<ChangeInfo>) {
         
         Object.assign(this, init);
     }        
 }
 
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace ChangeInfo {
+    export enum ComparisonActionEnum {
+        None = 'None' as any,
+        Accept = 'Accept' as any,
+        Reject = 'Reject' as any,
+    }
+    export enum TypeEnum {
+        None = 'None' as any,
+        Modified = 'Modified' as any,
+        Inserted = 'Inserted' as any,
+        Deleted = 'Deleted' as any,
+        Added = 'Added' as any,
+        NotModified = 'NotModified' as any,
+        StyleChanged = 'StyleChanged' as any,
+        Resized = 'Resized' as any,
+        Moved = 'Moved' as any,
+        MovedAndResized = 'MovedAndResized' as any,
+        ShiftedAndResized = 'ShiftedAndResized' as any,
+    }
+}
+// tslint:enable:quotemark
+/**
+ * Defines comparison options
+ */
+export class ComparisonOptions {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "sourceFile",
+            baseName: "sourceFile",
+            type: "FileInfo",
+        },        
+        {
+            name: "targetFiles",
+            baseName: "targetFiles",
+            type: "Array<FileInfo>",
+        },        
+        {
+            name: "settings",
+            baseName: "settings",
+            type: "Settings",
+        },        
+        {
+            name: "changeType",
+            baseName: "changeType",
+            type: "ComparisonOptions.ChangeTypeEnum",
+        },        
+        {
+            name: "outputPath",
+            baseName: "outputPath",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ComparisonOptions.attributeTypeMap;
+    }
+
+    /**
+     * Information about source file
+     */
+    public sourceFile: FileInfo;
+    
+    /**
+     * Information about target file(s)
+     */
+    public targetFiles: Array<FileInfo>;
+    
+    /**
+     * Comparison settings
+     */
+    public settings: Settings;
+    
+    /**
+     * Changes type. Used only for Changes resource(/comparison/changes)
+     */
+    public changeType: ComparisonOptions.ChangeTypeEnum;
+    
+    /**
+     * Path to the resultant document (if not specified the document will not be saved)
+     */
+    public outputPath: string;
+    
+    public constructor(init?: Partial<ComparisonOptions>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace ComparisonOptions {
+    export enum ChangeTypeEnum {
+        None = 'None' as any,
+        Modified = 'Modified' as any,
+        Inserted = 'Inserted' as any,
+        Deleted = 'Deleted' as any,
+        Added = 'Added' as any,
+        NotModified = 'NotModified' as any,
+        StyleChanged = 'StyleChanged' as any,
+        Resized = 'Resized' as any,
+        Moved = 'Moved' as any,
+        MovedAndResized = 'MovedAndResized' as any,
+        ShiftedAndResized = 'ShiftedAndResized' as any,
+    }
+}
+// tslint:enable:quotemark
 /**
  * DiagramMasterSetting Object fields
  */
@@ -123,16 +267,6 @@ export class DiagramMasterSetting {
             name: "useSourceMaster",
             baseName: "useSourceMaster",
             type: "boolean",
-        },        
-        {
-            name: "width",
-            baseName: "width",
-            type: "number",
-        },        
-        {
-            name: "height",
-            baseName: "height",
-            type: "number",
         }    ];
 
     /**
@@ -151,16 +285,6 @@ export class DiagramMasterSetting {
      * Value of using master from source and target document together
      */
     public useSourceMaster: boolean;
-    
-    /**
-     * Width of original document
-     */
-    public width: number;
-    
-    /**
-     * Height of original document
-     */
-    public height: number;
     
     public constructor(init?: Partial<DiagramMasterSetting>) {
         
@@ -503,6 +627,69 @@ export class FormatsResult {
 }
 
 /**
+ * Represents document information
+ */
+export class InfoResult {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "format",
+            baseName: "format",
+            type: "string",
+        },        
+        {
+            name: "extension",
+            baseName: "extension",
+            type: "string",
+        },        
+        {
+            name: "size",
+            baseName: "size",
+            type: "number",
+        },        
+        {
+            name: "pageCount",
+            baseName: "pageCount",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return InfoResult.attributeTypeMap;
+    }
+
+    /**
+     * Document format
+     */
+    public format: string;
+    
+    /**
+     * Document file extension
+     */
+    public extension: string;
+    
+    /**
+     * Document file size
+     */
+    public size: number;
+    
+    /**
+     * Pages count
+     */
+    public pageCount: number;
+    
+    public constructor(init?: Partial<InfoResult>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
  * ItemsStyle Object fields
  */
 export class ItemsStyle {
@@ -545,6 +732,11 @@ export class ItemsStyle {
             name: "strikeThrough",
             baseName: "strikeThrough",
             type: "boolean",
+        },        
+        {
+            name: "underline",
+            baseName: "underline",
+            type: "boolean",
         }    ];
 
     /**
@@ -585,9 +777,14 @@ export class ItemsStyle {
     public italic: boolean;
     
     /**
-     * Strikethrough style for changed components
+     * Strike through style for changed components
      */
     public strikeThrough: boolean;
+    
+    /**
+     * Underline style for changed components
+     */
+    public underline: boolean;
     
     public constructor(init?: Partial<ItemsStyle>) {
         
@@ -818,72 +1015,9 @@ export class ObjectExist {
 }
 
 /**
- * Defines comparison options
+ * Represents information about page
  */
-export class Options {
-
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            name: "sourceFile",
-            baseName: "sourceFile",
-            type: "FileInfo",
-        },        
-        {
-            name: "targetFiles",
-            baseName: "targetFiles",
-            type: "Array<FileInfo>",
-        },        
-        {
-            name: "settings",
-            baseName: "settings",
-            type: "Settings",
-        },        
-        {
-            name: "outputPath",
-            baseName: "outputPath",
-            type: "string",
-        }    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return Options.attributeTypeMap;
-    }
-
-    /**
-     * Information about source file
-     */
-    public sourceFile: FileInfo;
-    
-    /**
-     * Information about target file(s)
-     */
-    public targetFiles: Array<FileInfo>;
-    
-    /**
-     * Comparison settings
-     */
-    public settings: Settings;
-    
-    /**
-     * Path to the resultant document (if not specified the document will not be saved)
-     */
-    public outputPath: string;
-    
-    public constructor(init?: Partial<Options>) {
-        
-        Object.assign(this, init);
-    }        
-}
-
-/**
- * OriginalSize Object fields
- */
-export class OriginalSize {
+export class PageInfo {
 
     /**
      * Attribute type map
@@ -898,26 +1032,99 @@ export class OriginalSize {
             name: "height",
             baseName: "height",
             type: "number",
+        },        
+        {
+            name: "pageNumber",
+            baseName: "pageNumber",
+            type: "number",
         }    ];
 
     /**
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return OriginalSize.attributeTypeMap;
+        return PageInfo.attributeTypeMap;
     }
 
     /**
-     * Width of original document
+     * Page width
      */
     public width: number;
     
     /**
-     * Height of original document
+     * Page height
      */
     public height: number;
     
-    public constructor(init?: Partial<OriginalSize>) {
+    /**
+     * Page number
+     */
+    public pageNumber: number;
+    
+    public constructor(init?: Partial<PageInfo>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
+ * Rectangle model
+ */
+export class Rectangle {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "height",
+            baseName: "height",
+            type: "number",
+        },        
+        {
+            name: "width",
+            baseName: "width",
+            type: "number",
+        },        
+        {
+            name: "x",
+            baseName: "x",
+            type: "number",
+        },        
+        {
+            name: "y",
+            baseName: "y",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return Rectangle.attributeTypeMap;
+    }
+
+    /**
+     * Height
+     */
+    public height: number;
+    
+    /**
+     * Width
+     */
+    public width: number;
+    
+    /**
+     * X coordinate
+     */
+    public x: number;
+    
+    /**
+     * Y coordinate
+     */
+    public y: number;
+    
+    public constructor(init?: Partial<Rectangle>) {
         
         Object.assign(this, init);
     }        
@@ -943,6 +1150,11 @@ export class Settings {
             type: "boolean",
         },        
         {
+            name: "showInsertedContent",
+            baseName: "showInsertedContent",
+            type: "boolean",
+        },        
+        {
             name: "styleChangeDetection",
             baseName: "styleChangeDetection",
             type: "boolean",
@@ -958,8 +1170,8 @@ export class Settings {
             type: "ItemsStyle",
         },        
         {
-            name: "styleChangedItemsStyle",
-            baseName: "styleChangedItemsStyle",
+            name: "changedItemsStyle",
+            baseName: "changedItemsStyle",
             type: "ItemsStyle",
         },        
         {
@@ -968,9 +1180,9 @@ export class Settings {
             type: "Array<string>",
         },        
         {
-            name: "detailLevel",
-            baseName: "detailLevel",
-            type: "string",
+            name: "detailsLevel",
+            baseName: "detailsLevel",
+            type: "Settings.DetailsLevelEnum",
         },        
         {
             name: "useFramesForDelInsElements",
@@ -983,14 +1195,19 @@ export class Settings {
             type: "boolean",
         },        
         {
-            name: "markDeletedInsertedContentDeep",
-            baseName: "markDeletedInsertedContentDeep",
+            name: "markChangedContent",
+            baseName: "markChangedContent",
+            type: "boolean",
+        },        
+        {
+            name: "markNestedContent",
+            baseName: "markNestedContent",
             type: "boolean",
         },        
         {
             name: "cloneMetadata",
             baseName: "cloneMetadata",
-            type: "string",
+            type: "Settings.CloneMetadataEnum",
         },        
         {
             name: "metaData",
@@ -1000,7 +1217,7 @@ export class Settings {
         {
             name: "passwordSaveOption",
             baseName: "passwordSaveOption",
-            type: "string",
+            type: "Settings.PasswordSaveOptionEnum",
         },        
         {
             name: "password",
@@ -1015,7 +1232,22 @@ export class Settings {
         {
             name: "originalSize",
             baseName: "originalSize",
-            type: "OriginalSize",
+            type: "Size",
+        },        
+        {
+            name: "headerFootersComparison",
+            baseName: "headerFootersComparison",
+            type: "boolean",
+        },        
+        {
+            name: "paperSize",
+            baseName: "paperSize",
+            type: "Settings.PaperSizeEnum",
+        },        
+        {
+            name: "sensitivityOfComparison",
+            baseName: "sensitivityOfComparison",
+            type: "number",
         }    ];
 
     /**
@@ -1036,6 +1268,11 @@ export class Settings {
     public showDeletedContent: boolean;
     
     /**
+     * Indicates whether to show inserted components in resultant document or not
+     */
+    public showInsertedContent: boolean;
+    
+    /**
      * Indicates whether to detect style changes or not
      */
     public styleChangeDetection: boolean;
@@ -1053,7 +1290,7 @@ export class Settings {
     /**
      * Style for components with changed style
      */
-    public styleChangedItemsStyle: ItemsStyle;
+    public changedItemsStyle: ItemsStyle;
     
     /**
      * An array of delimiters to split text into words
@@ -1061,9 +1298,9 @@ export class Settings {
     public wordsSeparatorChars: Array<string>;
     
     /**
-     * Gets of sets the comparison detalisation level 
+     * Gets of sets the comparison details level 
      */
-    public detailLevel: string;
+    public detailsLevel: Settings.DetailsLevelEnum;
     
     /**
      * Indicates whether to use frames for shapes in Word Processing and for rectangles in Image documents
@@ -1076,14 +1313,19 @@ export class Settings {
     public calculateComponentCoordinates: boolean;
     
     /**
-     * Indicates whether to accept inserted/deleted styles for all children of inserted/deleted components
+     * Indicates whether to use frames for shapes in Word Processing and for rectangles in Image documents
      */
-    public markDeletedInsertedContentDeep: boolean;
+    public markChangedContent: boolean;
+    
+    /**
+     * Gets or sets a value indicating whether to mark the children of the deleted or inserted element as deleted or inserted
+     */
+    public markNestedContent: boolean;
     
     /**
      * Gets or sets type of metadata to clone
      */
-    public cloneMetadata: string;
+    public cloneMetadata: Settings.CloneMetadataEnum;
     
     /**
      * Gets or sets user metadata
@@ -1093,7 +1335,7 @@ export class Settings {
     /**
      * Gets or sets type of password saving
      */
-    public passwordSaveOption: string;
+    public passwordSaveOption: Settings.PasswordSaveOptionEnum;
     
     /**
      * Gets or sets user password to resultant document
@@ -1108,9 +1350,101 @@ export class Settings {
     /**
      * Gets or sets original document size when picture is compared with other different formats
      */
-    public originalSize: OriginalSize;
+    public originalSize: Size;
+    
+    /**
+     * Control to turn on comparison of header/footer contents
+     */
+    public headerFootersComparison: boolean;
+    
+    /**
+     * Gets or sets the result document paper size
+     */
+    public paperSize: Settings.PaperSizeEnum;
+    
+    /**
+     * Gets or sets a sensitivity of comparison. Default is 75
+     */
+    public sensitivityOfComparison: number;
     
     public constructor(init?: Partial<Settings>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace Settings {
+    export enum DetailsLevelEnum {
+        Low = 'Low' as any,
+        Middle = 'Middle' as any,
+        High = 'High' as any,
+    }
+    export enum CloneMetadataEnum {
+        Default = 'Default' as any,
+        Source = 'Source' as any,
+        Target = 'Target' as any,
+        FileAuthor = 'FileAuthor' as any,
+    }
+    export enum PasswordSaveOptionEnum {
+        None = 'None' as any,
+        Source = 'Source' as any,
+        Target = 'Target' as any,
+        User = 'User' as any,
+    }
+    export enum PaperSizeEnum {
+        Default = 'Default' as any,
+        A0 = 'A0' as any,
+        A1 = 'A1' as any,
+        A2 = 'A2' as any,
+        A3 = 'A3' as any,
+        A4 = 'A4' as any,
+        A5 = 'A5' as any,
+        A6 = 'A6' as any,
+        A7 = 'A7' as any,
+        A8 = 'A8' as any,
+    }
+}
+// tslint:enable:quotemark
+/**
+ * Item size
+ */
+export class Size {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "width",
+            baseName: "width",
+            type: "number",
+        },        
+        {
+            name: "height",
+            baseName: "height",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return Size.attributeTypeMap;
+    }
+
+    /**
+     * Width of item
+     */
+    public width: number;
+    
+    /**
+     * Height of item
+     */
+    public height: number;
+    
+    public constructor(init?: Partial<Size>) {
         
         Object.assign(this, init);
     }        
@@ -1321,7 +1655,7 @@ export class FileVersion extends StorageFile {
 /**
  * Comparison option class for updates endpoint
  */
-export class UpdatesOptions extends Options {
+export class UpdatesOptions extends ComparisonOptions {
 
     /**
      * Attribute type map
@@ -1341,7 +1675,7 @@ export class UpdatesOptions extends Options {
     }
 
     /**
-     * Changes to apply or reject. Used only for Changes resourse (/comparison/updates)
+     * Changes to apply or reject. Used only for updates resource (/comparison/updates)
      */
     public changes: Array<ChangeInfo>;
     
@@ -1351,11 +1685,24 @@ export class UpdatesOptions extends Options {
     }        
 }
 
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace UpdatesOptions {
+}
+// tslint:enable:quotemark
 const enumsMap = {
+    "ChangeInfo.ComparisonActionEnum": ChangeInfo.ComparisonActionEnum,
+    "ChangeInfo.TypeEnum": ChangeInfo.TypeEnum,
+    "ComparisonOptions.ChangeTypeEnum": ComparisonOptions.ChangeTypeEnum,
+    "Settings.DetailsLevelEnum": Settings.DetailsLevelEnum,
+    "Settings.CloneMetadataEnum": Settings.CloneMetadataEnum,
+    "Settings.PasswordSaveOptionEnum": Settings.PasswordSaveOptionEnum,
+    "Settings.PaperSizeEnum": Settings.PaperSizeEnum,
 };
 
 const typeMap = {
             ChangeInfo,
+            ComparisonOptions,
             DiagramMasterSetting,
             DiscUsage,
             ErrorDetails,
@@ -1365,14 +1712,16 @@ const typeMap = {
             FilesUploadResult,
             Format,
             FormatsResult,
+            InfoResult,
             ItemsStyle,
             Link,
             Metadata,
             ModelError,
             ObjectExist,
-            Options,
-            OriginalSize,
+            PageInfo,
+            Rectangle,
             Settings,
+            Size,
             StorageExist,
             StorageFile,
             StyleChangeInfo,
@@ -1389,9 +1738,9 @@ export class ComparisonsRequest {
     /**
      * Comparison options
      */
-    public comparisonOptions: Options;
+    public comparisonOptions: ComparisonOptions;
     
-    public constructor(comparisonOptions: Options) {        
+    public constructor(comparisonOptions: ComparisonOptions) {        
         this.comparisonOptions = comparisonOptions;
     }
 }
@@ -1403,9 +1752,9 @@ export class PostChangesRequest {
     /**
      * Comparison options
      */
-    public comparisonOptions: Options;
+    public comparisonOptions: ComparisonOptions;
     
-    public constructor(comparisonOptions: Options) {        
+    public constructor(comparisonOptions: ComparisonOptions) {        
         this.comparisonOptions = comparisonOptions;
     }
 }
@@ -1417,10 +1766,10 @@ export class PutChangesDocumentRequest {
     /**
      * Comparison options
      */
-    public comparisonOptions: UpdatesOptions;
+    public updatesOptions: UpdatesOptions;
     
-    public constructor(comparisonOptions: UpdatesOptions) {        
-        this.comparisonOptions = comparisonOptions;
+    public constructor(updatesOptions: UpdatesOptions) {        
+        this.updatesOptions = updatesOptions;
     }
 }
 
@@ -1705,6 +2054,20 @@ export class MoveFolderRequest {
         this.destPath = destPath;
         this.srcStorageName = srcStorageName;
         this.destStorageName = destStorageName;
+    }
+}
+
+/**
+ * Request model for GetDocumentInfo operation.
+ */
+export class GetDocumentInfoRequest {
+    /**
+     * Gets or sets fileInfo
+     */
+    public fileInfo: FileInfo;
+    
+    public constructor(fileInfo: FileInfo) {        
+        this.fileInfo = fileInfo;
     }
 }
 
