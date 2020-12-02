@@ -673,6 +673,102 @@ export class InfoApi {
 /**
  * GroupDocs.Comparison Cloud API 
  */
+export class ReviewApi {
+    
+    /**
+     * Creates new instance of ReviewApi
+     * @param appSid Application identifier (App SID).
+     * @param appKey Application private key (App Key).
+     */
+    public static fromKeys(appSid: string, appKey: string) {
+        const config = new Configuration(appSid, appKey);
+        return new ReviewApi(config);
+    }
+
+    /**
+     * Creates new instance of ReviewApi
+     * @param config API configuration.
+     */
+    public static fromConfig(config: Configuration) {
+        return new ReviewApi(config);
+    }
+
+    /**
+     * Configuration
+     */
+    private configuration: Configuration;
+
+    /**
+     * @param config Configuration.
+     */
+    private constructor(config: Configuration) {
+        this.configuration = config;
+    }
+
+    /**
+     * Accepts or rejects revisions in DOCX document
+     * @param requestObj contains request parameters
+     */
+    public async applyRevisions(requestObj: model.ApplyRevisionsRequest): Promise<model.Link> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling applyRevisions.');
+        }
+
+        const localVarPath = this.configuration.getServerUrl() + "/comparison/revisions";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.revisionOptions' is not null or undefined
+        if (requestObj.revisionOptions === null || requestObj.revisionOptions === undefined) {
+            throw new Error('Required parameter "requestObj.revisionOptions" was null or undefined when calling applyRevisions.');
+        }
+        
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: Serializer.serialize(requestObj.revisionOptions, requestObj.revisionOptions.constructor.name === "Object" ? "ApplyRevisionsOptions" : requestObj.revisionOptions.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result =  Serializer.deserialize(response.body, "Link");
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Get list of DOCX document revisions. 
+     * @param requestObj contains request parameters
+     */
+    public async getRevisions(requestObj: model.GetRevisionsRequest): Promise<Array<model.RevisionInfo>> {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "requestObj" was null or undefined when calling getRevisions.');
+        }
+
+        const localVarPath = this.configuration.getServerUrl() + "/comparison/revisions";
+        const queryParameters: any = {};
+
+        // verify required parameter 'requestObj.fileInfo' is not null or undefined
+        if (requestObj.fileInfo === null || requestObj.fileInfo === undefined) {
+            throw new Error('Required parameter "requestObj.fileInfo" was null or undefined when calling getRevisions.');
+        }
+        
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+            body: Serializer.serialize(requestObj.fileInfo, requestObj.fileInfo.constructor.name === "Object" ? "FileInfo" : requestObj.fileInfo.constructor.name),
+        };
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result =  Serializer.deserialize(response.body, "Array<RevisionInfo>");
+        return Promise.resolve(result);
+    }
+
+}
+/**
+ * GroupDocs.Comparison Cloud API 
+ */
 export class StorageApi {
     
     /**

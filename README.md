@@ -67,4 +67,12 @@ infoApi.getSupportedFileFormats()
 ## Licensing
 GroupDocs.Comparison Cloud Node.js SDK licensed under [MIT License](LICENSE).
 
-[Home](https://www.groupdocs.cloud/) | [Docs](https://docs.groupdocs.cloud/comparison/) | [Demos](https://products.groupdocs.app/comparison/family) | [API Reference](https://apireference.groupdocs.cloud/comparison/) | [Examples](https://github.com/groupdocs-comparison-cloud/groupdocs-comparison-cloud-node-samples) | [Blog](https://blog.groupdocs.cloud/category/comparison/) | [Free Support](https://forum.groupdocs.cloud/c/comparison) | [Free Trial](https://purchase.groupdocs.cloud/trial)
+## Resources
++ [**Website**](https://www.groupdocs.cloud)
++ [**Product Home**](https://products.groupdocs.cloud/comparison)
++ [**Documentation**](https://docs.groupdocs.cloud/comparison)
++ [**Free Support Forum**](https://forum.groupdocs.cloud/c/comparison)
++ [**Blog**](https://blog.groupdocs.cloud/category/comparison)
+
+## Contact Us
+Your feedback is very important to us. Please feel free to contact us using our [Support Forums](https://forum.groupdocs.cloud/c/comparison).

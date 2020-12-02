@@ -23,6 +23,59 @@
 */
 
 /**
+ * Options for apply revisions method
+ */
+export class ApplyRevisionsOptions {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "sourceFile",
+            baseName: "sourceFile",
+            type: "FileInfo",
+        },        
+        {
+            name: "revisions",
+            baseName: "revisions",
+            type: "Array<RevisionInfo>",
+        },        
+        {
+            name: "outputPath",
+            baseName: "outputPath",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ApplyRevisionsOptions.attributeTypeMap;
+    }
+
+    /**
+     * Information about source file
+     */
+    public sourceFile: FileInfo;
+    
+    /**
+     * Revisions to apply or reject.
+     */
+    public revisions: Array<RevisionInfo>;
+    
+    /**
+     * Path to the resultant document (if not specified the document will not be saved)
+     */
+    public outputPath: string;
+    
+    public constructor(init?: Partial<ApplyRevisionsOptions>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+/**
  * ChangeInfo Object fields
  */
 export class ChangeInfo {
@@ -1131,6 +1184,96 @@ export class Rectangle {
 }
 
 /**
+ * Provides information about one revision.
+ */
+export class RevisionInfo {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "id",
+            baseName: "id",
+            type: "number",
+        },        
+        {
+            name: "action",
+            baseName: "action",
+            type: "RevisionInfo.ActionEnum",
+        },        
+        {
+            name: "text",
+            baseName: "text",
+            type: "string",
+        },        
+        {
+            name: "author",
+            baseName: "author",
+            type: "string",
+        },        
+        {
+            name: "type",
+            baseName: "type",
+            type: "RevisionInfo.TypeEnum",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return RevisionInfo.attributeTypeMap;
+    }
+
+    /**
+     * Id of revision
+     */
+    public id: number;
+    
+    /**
+     * Action (accept or reject). This field allows you to influence the display of the revision.             
+     */
+    public action: RevisionInfo.ActionEnum;
+    
+    /**
+     * The text that is in revision.
+     */
+    public text: string;
+    
+    /**
+     * Author.
+     */
+    public author: string;
+    
+    /**
+     * RevisionHandler type, depending on the type the Action (accept or reject) logic changes.             
+     */
+    public type: RevisionInfo.TypeEnum;
+    
+    public constructor(init?: Partial<RevisionInfo>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace RevisionInfo {
+    export enum ActionEnum {
+        None = 'None' as any,
+        Accept = 'Accept' as any,
+        Reject = 'Reject' as any,
+    }
+    export enum TypeEnum {
+        Insertion = 'Insertion' as any,
+        Deletion = 'Deletion' as any,
+        FormatChange = 'FormatChange' as any,
+        StyleDefinitionChange = 'StyleDefinitionChange' as any,
+        Moving = 'Moving' as any,
+    }
+}
+// tslint:enable:quotemark
+/**
  * Defines comparison process additional settings 
  */
 export class Settings {
@@ -1694,6 +1837,8 @@ const enumsMap = {
     "ChangeInfo.ComparisonActionEnum": ChangeInfo.ComparisonActionEnum,
     "ChangeInfo.TypeEnum": ChangeInfo.TypeEnum,
     "ComparisonOptions.ChangeTypeEnum": ComparisonOptions.ChangeTypeEnum,
+    "RevisionInfo.ActionEnum": RevisionInfo.ActionEnum,
+    "RevisionInfo.TypeEnum": RevisionInfo.TypeEnum,
     "Settings.DetailsLevelEnum": Settings.DetailsLevelEnum,
     "Settings.CloneMetadataEnum": Settings.CloneMetadataEnum,
     "Settings.PasswordSaveOptionEnum": Settings.PasswordSaveOptionEnum,
@@ -1701,6 +1846,7 @@ const enumsMap = {
 };
 
 const typeMap = {
+            ApplyRevisionsOptions,
             ChangeInfo,
             ComparisonOptions,
             DiagramMasterSetting,
@@ -1720,6 +1866,7 @@ const typeMap = {
             ObjectExist,
             PageInfo,
             Rectangle,
+            RevisionInfo,
             Settings,
             Size,
             StorageExist,
@@ -2063,6 +2210,34 @@ export class MoveFolderRequest {
 export class GetDocumentInfoRequest {
     /**
      * Gets or sets fileInfo
+     */
+    public fileInfo: FileInfo;
+    
+    public constructor(fileInfo: FileInfo) {        
+        this.fileInfo = fileInfo;
+    }
+}
+
+/**
+ * Request model for ApplyRevisions operation.
+ */
+export class ApplyRevisionsRequest {
+    /**
+     * Apply revisions options
+     */
+    public revisionOptions: ApplyRevisionsOptions;
+    
+    public constructor(revisionOptions: ApplyRevisionsOptions) {        
+        this.revisionOptions = revisionOptions;
+    }
+}
+
+/**
+ * Request model for GetRevisions operation.
+ */
+export class GetRevisionsRequest {
+    /**
+     * File information
      */
     public fileInfo: FileInfo;
     
