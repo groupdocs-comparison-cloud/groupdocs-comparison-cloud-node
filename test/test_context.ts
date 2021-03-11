@@ -1,7 +1,7 @@
 /*
 * The MIT License (MIT)
 *
-* Copyright (c) 2003-2020 Aspose Pty Ltd
+* Copyright (c) 2003-2021 Aspose Pty Ltd
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -27,6 +27,7 @@ import * as fs from "fs";
 import { Configuration } from "../src/configuration";
 import { Serializer } from "../src/serializer";
 import { InfoApi, CompareApi, ObjectExistsRequest, UploadFileRequest } from "../src/comparison_api";
+import { ReviewApi } from "../src/comparison_api";
 import { StorageApi } from "../src/comparison_api";
 import { FileApi } from "../src/comparison_api";
 import { FolderApi, DeleteFolderRequest } from "../src/comparison_api";
@@ -34,6 +35,7 @@ import { TestFile } from "./test_file";
 
 let infoApi: InfoApi;
 let compareApi: CompareApi;
+let reviewApi: ReviewApi;
 let storageApi: StorageApi;
 let fileApi: FileApi;
 let folderApi: FolderApi;
@@ -52,6 +54,7 @@ export function getCompareApi() {
         //config.debugging = true;
         infoApi = InfoApi.fromConfig(config);
         compareApi = CompareApi.fromConfig(config);
+        reviewApi = ReviewApi.fromConfig(config);
         storageApi = StorageApi.fromConfig(config);
         fileApi = FileApi.fromConfig(config);
         folderApi = FolderApi.fromConfig(config);
@@ -64,6 +67,11 @@ export function getCompareApi() {
 export function getInfoApi() {
     if (!compareApi) getCompareApi();
     return infoApi;
+}
+
+export function getReviewApi() {
+    if (!compareApi) getCompareApi();
+    return reviewApi;
 }
 
 export function getStorageApi() {

@@ -1,7 +1,7 @@
 /*
 * The MIT License (MIT)
 *
-* Copyright (c) 2003-2020 Aspose Pty Ltd
+* Copyright (c) 2003-2021 Aspose Pty Ltd
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -42,6 +42,16 @@ export class ApplyRevisionsOptions {
             type: "Array<RevisionInfo>",
         },        
         {
+            name: "acceptAll",
+            baseName: "acceptAll",
+            type: "boolean",
+        },        
+        {
+            name: "rejectAll",
+            baseName: "rejectAll",
+            type: "boolean",
+        },        
+        {
             name: "outputPath",
             baseName: "outputPath",
             type: "string",
@@ -63,6 +73,16 @@ export class ApplyRevisionsOptions {
      * Revisions to apply or reject.
      */
     public revisions: Array<RevisionInfo>;
+    
+    /**
+     * Indicates whether to apply all revisions in the document
+     */
+    public acceptAll: boolean;
+    
+    /**
+     * Indicates whether to reject all revisions in the document
+     */
+    public rejectAll: boolean;
     
     /**
      * Path to the resultant document (if not specified the document will not be saved)

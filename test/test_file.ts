@@ -1,7 +1,7 @@
 /*
 * The MIT License (MIT)
 *
-* Copyright (c) 2003-2020 Aspose Pty Ltd
+* Copyright (c) 2003-2021 Aspose Pty Ltd
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -38,6 +38,7 @@ export class TestFile {
     public static SourceSlide: TestFile = new TestFile("source.pptx", "source_files\\slide\\");
     public static SourceText: TestFile = new TestFile("source.txt", "source_files\\text\\");
     public static SourceWord: TestFile = new TestFile("source.docx", "source_files\\word\\");
+    public static SourceWithRevs: TestFile = new TestFile("source_with_revs.docx", "source_files\\word\\");
 
     public static SourceCellProtected: TestFile = new TestFile("source_protected.xlsx", "source_files\\cell\\", "1231");
     public static SourceNoteProtected: TestFile = new TestFile("source_protected.one", "source_files\\note\\", "123");
@@ -127,6 +128,7 @@ export class TestFile {
             TestFile.SourceSlide,
             TestFile.SourceText,
             TestFile.SourceWord,
+            TestFile.SourceWithRevs,
             TestFile.SourceCellProtected,
             TestFile.SourceNoteProtected,
             TestFile.SourcePdfProtected,
