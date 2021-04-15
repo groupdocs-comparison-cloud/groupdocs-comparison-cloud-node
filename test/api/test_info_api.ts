@@ -24,9 +24,11 @@
 
 import { expect } from "chai";
 import "mocha";
+import { FileInfo, GetDocumentInfoRequest } from "../../src/model";
 import * as TestContext from "../test_context";
+import { TestFile } from "../test_file";
 
-describe("formats_api", () => {
+describe("info_api", () => {
     
     before(async () => {
         process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = "0"
@@ -50,5 +52,25 @@ describe("formats_api", () => {
                 });
         });
     });
+
+    describe("test_get_info", () => {
+        it("should return document info", async () => {            
+            const infoApi = TestContext.getInfoApi();
+            let fileInfo = TestFile.SourceWord.ToFileInfo();
+            let response = await infoApi.getDocumentInfo(new GetDocumentInfoRequest(fileInfo));
+            expect(response.pageCount).equal(1);
+        });
+
+        it("TestGetInfoReturnsFileNotFound", async () => {  
+            let fileInfo = new FileInfo();
+            fileInfo.filePath = "some-folder/NotExist.docx";            
+            try {
+                let response = await TestContext.getInfoApi().getDocumentInfo(new GetDocumentInfoRequest(fileInfo));
+                expect(response.pageCount).equal(1);
+            } catch (error) {
+                expect(error.message).equal("Can\'t find file located at \'some-folder/NotExist.docx\'.");
+            }
+        });         
+    });    
     
 });
