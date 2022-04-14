@@ -1,7 +1,7 @@
 /*
 * The MIT License (MIT)
 *
-* Copyright (c) 2003-2021 Aspose Pty Ltd
+* Copyright (c) 2003-2022 Aspose Pty Ltd
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -322,6 +322,49 @@ export namespace ComparisonOptions {
     }
 }
 // tslint:enable:quotemark
+/**
+ * Metered license consumption information
+ */
+export class ConsumptionResult {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "credit",
+            baseName: "credit",
+            type: "number",
+        },        
+        {
+            name: "quantity",
+            baseName: "quantity",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ConsumptionResult.attributeTypeMap;
+    }
+
+    /**
+     * Amount of used credits
+     */
+    public credit: number;
+    
+    /**
+     * Amount of MBs processed
+     */
+    public quantity: number;
+    
+    public constructor(init?: Partial<ConsumptionResult>) {
+        
+        Object.assign(this, init);
+    }        
+}
+
 /**
  * DiagramMasterSetting Object fields
  */
@@ -1869,6 +1912,7 @@ const typeMap = {
             ApplyRevisionsOptions,
             ChangeInfo,
             ComparisonOptions,
+            ConsumptionResult,
             DiagramMasterSetting,
             DiscUsage,
             ErrorDetails,
