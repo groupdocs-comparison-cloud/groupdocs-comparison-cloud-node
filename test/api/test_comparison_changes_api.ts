@@ -1,7 +1,7 @@
 /*
 * The MIT License (MIT)
 *
-* Copyright (c) 2003-2022 Aspose Pty Ltd
+* Copyright (c) 2003-2023 Aspose Pty Ltd
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -62,7 +62,7 @@ describe("comparison_changes_api", () => {
         it("test_changes_html", async () => {              
             var options = GetComparisonOptions(TestFile.SourceHtml, TestFile.TargetHtml)
             var response = await TestContext.getCompareApi().postChanges(new PostChangesRequest(options));
-            expect(response.length).equal(3);            
+            expect(response.length).equal(2);            
         });
         
         it("test_changes_image", async () => {              
