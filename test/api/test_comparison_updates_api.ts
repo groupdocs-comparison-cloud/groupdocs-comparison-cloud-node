@@ -59,31 +59,33 @@ describe("comparison_updates_api", () => {
             expect(response.rel).equal(options.outputPath);
         });
         
-        // Type casting bug, fixed in Comparison 19.4
-        //
-        // it("test_comparison_updates_html", async () => {              
-        //     var options = GetComparisonOptions(TestFile.SourceHtml, TestFile.TargetHtml)
-        //     var response = await TestContext.getCompareApi().putChangesDocument(new PutChangesDocumentRequest(options));
-        //     expect(response.rel).equal(options.outputPath);
-        // });
+        //Type casting bug, fixed in Comparison 19.4
         
-        // it("test_comparison_updates_image", async () => {              
-        //     var options = GetComparisonOptions(TestFile.SourceImage, TestFile.TargetImage)
-        //     var response = await TestContext.getCompareApi().putChangesDocument(new PutChangesDocumentRequest(options));
-        //     expect(response.rel).equal(options.outputPath);
-        // });
-        
-        it("test_comparison_updates_note", async () => {              
-            var options = GetComparisonOptions(TestFile.SourceNote, TestFile.TargetNote)
+        it("test_comparison_updates_html", async () => {              
+            var options = GetComparisonOptions(TestFile.SourceHtml, TestFile.TargetHtml)
             var response = await TestContext.getCompareApi().putChangesDocument(new PutChangesDocumentRequest(options));
             expect(response.rel).equal(options.outputPath);
         });
         
-        it("test_comparison_updates_note_protected", async () => {              
-            var options = GetComparisonOptions(TestFile.SourceNoteProtected, TestFile.TargetNoteProtected)
+        it("test_comparison_updates_image", async () => {              
+            var options = GetComparisonOptions(TestFile.SourceImage, TestFile.TargetImage)
             var response = await TestContext.getCompareApi().putChangesDocument(new PutChangesDocumentRequest(options));
             expect(response.rel).equal(options.outputPath);
         });
+
+        // Not supported in linux
+        // it("test_comparison_updates_note", async () => {              
+        //     var options = GetComparisonOptions(TestFile.SourceNote, TestFile.TargetNote)
+        //     var response = await TestContext.getCompareApi().putChangesDocument(new PutChangesDocumentRequest(options));
+        //     expect(response.rel).equal(options.outputPath);
+        // });
+        
+        // Not supported in linux
+        // it("test_comparison_updates_note_protected", async () => {              
+        //     var options = GetComparisonOptions(TestFile.SourceNoteProtected, TestFile.TargetNoteProtected)
+        //     var response = await TestContext.getCompareApi().putChangesDocument(new PutChangesDocumentRequest(options));
+        //     expect(response.rel).equal(options.outputPath);
+        // });
         
         it("test_comparison_updates_pdf", async () => {              
             var options = GetComparisonOptions(TestFile.SourcePdf, TestFile.TargetPdf)
@@ -126,9 +128,9 @@ describe("comparison_updates_api", () => {
             options.settings.showDeletedContent = true;
             options.settings.styleChangeDetection = true;
             options.settings.useFramesForDelInsElements = false;
-            options.settings.metaData = undefined;
+            //options.settings.metaData = undefined;
             options.settings.detailsLevel = Settings.DetailsLevelEnum.Low;
-            options.settings.diagramMasterSetting = undefined;
+            //options.settings.diagramMasterSetting = undefined;
             options.settings.calculateComponentCoordinates = false;
             options.settings.cloneMetadata = Settings.CloneMetadataEnum.Default;            
             options.settings.password = "1111";

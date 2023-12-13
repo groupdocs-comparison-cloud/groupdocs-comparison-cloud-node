@@ -70,18 +70,19 @@ describe("comparison_changes_api", () => {
             var response = await TestContext.getCompareApi().postChanges(new PostChangesRequest(options));
             expect(response.length).equal(170);            
         });
+
+        // Not supported in linux
+        // it("test_changes_note", async () => {              
+        //     var options = GetComparisonOptions(TestFile.SourceNote, TestFile.TargetNote)
+        //     var response = await TestContext.getCompareApi().postChanges(new PostChangesRequest(options));
+        //     expect(response.length).equal(12);
+        // });
         
-        it("test_changes_note", async () => {              
-            var options = GetComparisonOptions(TestFile.SourceNote, TestFile.TargetNote)
-            var response = await TestContext.getCompareApi().postChanges(new PostChangesRequest(options));
-            expect(response.length).equal(12);
-        });
-        
-        it("test_changes_note_protected", async () => {              
-            var options = GetComparisonOptions(TestFile.SourceNoteProtected, TestFile.TargetNoteProtected)
-            var response = await TestContext.getCompareApi().postChanges(new PostChangesRequest(options));
-            expect(response.length).equal(12);            
-        });
+        // it("test_changes_note_protected", async () => {              
+        //     var options = GetComparisonOptions(TestFile.SourceNoteProtected, TestFile.TargetNoteProtected)
+        //     var response = await TestContext.getCompareApi().postChanges(new PostChangesRequest(options));
+        //     expect(response.length).equal(12);            
+        // });
         
         it("test_changes_pdf", async () => {              
             var options = GetComparisonOptions(TestFile.SourcePdf, TestFile.TargetPdf)
@@ -124,9 +125,9 @@ describe("comparison_changes_api", () => {
             options.settings.showDeletedContent = true;
             options.settings.styleChangeDetection = true;
             options.settings.useFramesForDelInsElements = false;
-            options.settings.metaData = undefined;
+            //options.settings.metaData = undefined;
             options.settings.detailsLevel = Settings.DetailsLevelEnum.Low;
-            options.settings.diagramMasterSetting = undefined;
+            //options.settings.diagramMasterSetting = undefined;
             options.settings.calculateComponentCoordinates = false;
             options.settings.cloneMetadata = Settings.CloneMetadataEnum.Default;            
             options.settings.password = "1111";
