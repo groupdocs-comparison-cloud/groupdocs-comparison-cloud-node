@@ -23,6 +23,34 @@
 */
 
 /**
- * Package version
+ * Storage exists
  */
-export const PackageVersion: string = "26.5.0";
+export class StorageExist {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "exists",
+            baseName: "exists",
+            type: "boolean",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return StorageExist.attributeTypeMap;
+    }
+
+    /**
+     * Shows that the storage exists.
+     */
+    public exists: boolean;
+
+    public constructor(init?: Partial<StorageExist>) {
+
+        Object.assign(this, init);
+    }
+}

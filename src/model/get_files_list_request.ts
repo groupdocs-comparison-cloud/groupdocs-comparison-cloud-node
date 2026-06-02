@@ -23,6 +23,21 @@
 */
 
 /**
- * Package version
+ * Request model for GetFilesList operation.
  */
-export const PackageVersion: string = "26.5.0";
+export class GetFilesListRequest {
+    /**
+     * Folder path e.g. '/folder'
+     */
+    public path: string;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+
+    public constructor(path: string, storageName?: string) {
+        this.path = path;
+        this.storageName = storageName;
+    }
+}

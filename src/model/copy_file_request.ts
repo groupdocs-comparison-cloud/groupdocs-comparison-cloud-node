@@ -23,6 +23,39 @@
 */
 
 /**
- * Package version
+ * Request model for CopyFile operation.
  */
-export const PackageVersion: string = "26.5.0";
+export class CopyFileRequest {
+    /**
+     * Source file path e.g. '/folder/file.ext'
+     */
+    public srcPath: string;
+
+    /**
+     * Destination file path
+     */
+    public destPath: string;
+
+    /**
+     * Source storage name
+     */
+    public srcStorageName: string;
+
+    /**
+     * Destination storage name
+     */
+    public destStorageName: string;
+
+    /**
+     * File version ID to copy
+     */
+    public versionId: string;
+
+    public constructor(srcPath: string, destPath: string, srcStorageName?: string, destStorageName?: string, versionId?: string) {
+        this.srcPath = srcPath;
+        this.destPath = destPath;
+        this.srcStorageName = srcStorageName;
+        this.destStorageName = destStorageName;
+        this.versionId = versionId;
+    }
+}

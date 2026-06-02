@@ -22,7 +22,18 @@
 * SOFTWARE.
 */
 
+import { UpdatesOptions } from "./updates_options";
+
 /**
- * Package version
+ * Request model for PutChangesDocument operation.
  */
-export const PackageVersion: string = "26.5.0";
+export class PutChangesDocumentRequest {
+    /**
+     * Comparison options
+     */
+    public updatesOptions: UpdatesOptions;
+
+    public constructor(updatesOptions: UpdatesOptions) {
+        this.updatesOptions = updatesOptions;
+    }
+}

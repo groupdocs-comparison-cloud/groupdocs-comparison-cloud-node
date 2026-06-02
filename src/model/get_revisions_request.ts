@@ -22,7 +22,18 @@
 * SOFTWARE.
 */
 
+import { FileInfo } from "./file_info";
+
 /**
- * Package version
+ * Request model for GetRevisions operation.
  */
-export const PackageVersion: string = "26.5.0";
+export class GetRevisionsRequest {
+    /**
+     * File information
+     */
+    public fileInfo: FileInfo;
+
+    public constructor(fileInfo: FileInfo) {
+        this.fileInfo = fileInfo;
+    }
+}

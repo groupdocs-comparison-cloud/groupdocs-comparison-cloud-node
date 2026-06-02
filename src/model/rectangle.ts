@@ -23,6 +23,64 @@
 */
 
 /**
- * Package version
+ * Rectangle model
  */
-export const PackageVersion: string = "26.5.0";
+export class Rectangle {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "height",
+            baseName: "height",
+            type: "number",
+        },
+        {
+            name: "width",
+            baseName: "width",
+            type: "number",
+        },
+        {
+            name: "x",
+            baseName: "x",
+            type: "number",
+        },
+        {
+            name: "y",
+            baseName: "y",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return Rectangle.attributeTypeMap;
+    }
+
+    /**
+     * Height
+     */
+    public height: number;
+
+    /**
+     * Width
+     */
+    public width: number;
+
+    /**
+     * X coordinate
+     */
+    public x: number;
+
+    /**
+     * Y coordinate
+     */
+    public y: number;
+
+    public constructor(init?: Partial<Rectangle>) {
+
+        Object.assign(this, init);
+    }
+}

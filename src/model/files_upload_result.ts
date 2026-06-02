@@ -23,6 +23,44 @@
 */
 
 /**
- * Package version
+ * File upload result
  */
-export const PackageVersion: string = "26.5.0";
+export class FilesUploadResult {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "uploaded",
+            baseName: "uploaded",
+            type: "Array<string>",
+        },
+        {
+            name: "errors",
+            baseName: "errors",
+            type: "Array<Error>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return FilesUploadResult.attributeTypeMap;
+    }
+
+    /**
+     * List of uploaded file names
+     */
+    public uploaded: Array<string>;
+
+    /**
+     * List of errors.
+     */
+    public errors: Array<Error>;
+
+    public constructor(init?: Partial<FilesUploadResult>) {
+
+        Object.assign(this, init);
+    }
+}

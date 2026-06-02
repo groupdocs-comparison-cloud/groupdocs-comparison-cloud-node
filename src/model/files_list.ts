@@ -22,7 +22,37 @@
 * SOFTWARE.
 */
 
+import { StorageFile } from "./storage_file";
+
 /**
- * Package version
+ * Files list
  */
-export const PackageVersion: string = "26.5.0";
+export class FilesList {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "value",
+            baseName: "value",
+            type: "Array<StorageFile>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return FilesList.attributeTypeMap;
+    }
+
+    /**
+     * Files and folders contained by folder StorageFile.
+     */
+    public value: Array<StorageFile>;
+
+    public constructor(init?: Partial<FilesList>) {
+
+        Object.assign(this, init);
+    }
+}

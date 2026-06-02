@@ -23,6 +23,27 @@
 */
 
 /**
- * Package version
+ * Request model for DeleteFile operation.
  */
-export const PackageVersion: string = "26.5.0";
+export class DeleteFileRequest {
+    /**
+     * File path e.g. '/folder/file.ext'
+     */
+    public path: string;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+
+    /**
+     * File version ID to delete
+     */
+    public versionId: string;
+
+    public constructor(path: string, storageName?: string, versionId?: string) {
+        this.path = path;
+        this.storageName = storageName;
+        this.versionId = versionId;
+    }
+}

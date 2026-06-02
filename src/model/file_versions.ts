@@ -22,7 +22,37 @@
 * SOFTWARE.
 */
 
+import { FileVersion } from "./file_version";
+
 /**
- * Package version
+ * File versions FileVersion.
  */
-export const PackageVersion: string = "26.5.0";
+export class FileVersions {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "value",
+            baseName: "value",
+            type: "Array<FileVersion>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return FileVersions.attributeTypeMap;
+    }
+
+    /**
+     * File versions FileVersion.
+     */
+    public value: Array<FileVersion>;
+
+    public constructor(init?: Partial<FileVersions>) {
+
+        Object.assign(this, init);
+    }
+}

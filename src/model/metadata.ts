@@ -23,6 +23,54 @@
 */
 
 /**
- * Package version
+ * MetaData Object fields
  */
-export const PackageVersion: string = "26.5.0";
+export class Metadata {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "author",
+            baseName: "author",
+            type: "string",
+        },
+        {
+            name: "lastSaveBy",
+            baseName: "lastSaveBy",
+            type: "string",
+        },
+        {
+            name: "company",
+            baseName: "company",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return Metadata.attributeTypeMap;
+    }
+
+    /**
+     * Value of document Author
+     */
+    public author: string;
+
+    /**
+     * Value of last save by author of document
+     */
+    public lastSaveBy: string;
+
+    /**
+     * Value of Company of document
+     */
+    public company: string;
+
+    public constructor(init?: Partial<Metadata>) {
+
+        Object.assign(this, init);
+    }
+}

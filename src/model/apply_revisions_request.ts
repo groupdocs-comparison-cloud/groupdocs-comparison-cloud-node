@@ -22,7 +22,18 @@
 * SOFTWARE.
 */
 
+import { ApplyRevisionsOptions } from "./apply_revisions_options";
+
 /**
- * Package version
+ * Request model for ApplyRevisions operation.
  */
-export const PackageVersion: string = "26.5.0";
+export class ApplyRevisionsRequest {
+    /**
+     * Apply revisions options
+     */
+    public revisionOptions: ApplyRevisionsOptions;
+
+    public constructor(revisionOptions: ApplyRevisionsOptions) {
+        this.revisionOptions = revisionOptions;
+    }
+}

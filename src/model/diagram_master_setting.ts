@@ -23,6 +23,44 @@
 */
 
 /**
- * Package version
+ * DiagramMasterSetting Object fields
  */
-export const PackageVersion: string = "26.5.0";
+export class DiagramMasterSetting {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "masterPath",
+            baseName: "masterPath",
+            type: "string",
+        },
+        {
+            name: "useSourceMaster",
+            baseName: "useSourceMaster",
+            type: "boolean",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return DiagramMasterSetting.attributeTypeMap;
+    }
+
+    /**
+     * Path to custom master path
+     */
+    public masterPath: string;
+
+    /**
+     * Value of using master from source and target document together
+     */
+    public useSourceMaster: boolean;
+
+    public constructor(init?: Partial<DiagramMasterSetting>) {
+
+        Object.assign(this, init);
+    }
+}

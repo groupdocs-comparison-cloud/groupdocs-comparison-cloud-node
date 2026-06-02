@@ -23,6 +23,39 @@
 */
 
 /**
- * Package version
+ * Request model for MoveFile operation.
  */
-export const PackageVersion: string = "26.5.0";
+export class MoveFileRequest {
+    /**
+     * Source file path e.g. '/src.ext'
+     */
+    public srcPath: string;
+
+    /**
+     * Destination file path e.g. '/dest.ext'
+     */
+    public destPath: string;
+
+    /**
+     * Source storage name
+     */
+    public srcStorageName: string;
+
+    /**
+     * Destination storage name
+     */
+    public destStorageName: string;
+
+    /**
+     * File version ID to move
+     */
+    public versionId: string;
+
+    public constructor(srcPath: string, destPath: string, srcStorageName?: string, destStorageName?: string, versionId?: string) {
+        this.srcPath = srcPath;
+        this.destPath = destPath;
+        this.srcStorageName = srcStorageName;
+        this.destStorageName = destStorageName;
+        this.versionId = versionId;
+    }
+}

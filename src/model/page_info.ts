@@ -23,6 +23,54 @@
 */
 
 /**
- * Package version
+ * Represents information about page
  */
-export const PackageVersion: string = "26.5.0";
+export class PageInfo {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "width",
+            baseName: "width",
+            type: "number",
+        },
+        {
+            name: "height",
+            baseName: "height",
+            type: "number",
+        },
+        {
+            name: "pageNumber",
+            baseName: "pageNumber",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return PageInfo.attributeTypeMap;
+    }
+
+    /**
+     * Page width
+     */
+    public width: number;
+
+    /**
+     * Page height
+     */
+    public height: number;
+
+    /**
+     * Page number
+     */
+    public pageNumber: number;
+
+    public constructor(init?: Partial<PageInfo>) {
+
+        Object.assign(this, init);
+    }
+}

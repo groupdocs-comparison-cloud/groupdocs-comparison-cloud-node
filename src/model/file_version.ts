@@ -22,7 +22,47 @@
 * SOFTWARE.
 */
 
+import { StorageFile } from "./storage_file";
+
 /**
- * Package version
+ * File Version
  */
-export const PackageVersion: string = "26.5.0";
+export class FileVersion extends StorageFile {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "versionId",
+            baseName: "versionId",
+            type: "string",
+        },
+        {
+            name: "isLatest",
+            baseName: "isLatest",
+            type: "boolean",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(FileVersion.attributeTypeMap);
+    }
+
+    /**
+     * File Version ID.
+     */
+    public versionId: string;
+
+    /**
+     * Specifies whether the file is (true) or is not (false) the latest version of an file.
+     */
+    public isLatest: boolean;
+
+    public constructor(init?: Partial<FileVersion>) {
+        super(init);
+        Object.assign(this, init);
+    }
+}

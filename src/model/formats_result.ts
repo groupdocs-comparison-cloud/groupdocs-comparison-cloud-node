@@ -22,7 +22,37 @@
 * SOFTWARE.
 */
 
+import { Format } from "./format";
+
 /**
- * Package version
+ * Describes list of supported file formats
  */
-export const PackageVersion: string = "26.5.0";
+export class FormatsResult {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "formats",
+            baseName: "formats",
+            type: "Array<Format>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return FormatsResult.attributeTypeMap;
+    }
+
+    /**
+     * Supported file formats
+     */
+    public formats: Array<Format>;
+
+    public constructor(init?: Partial<FormatsResult>) {
+
+        Object.assign(this, init);
+    }
+}

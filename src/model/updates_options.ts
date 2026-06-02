@@ -22,7 +22,44 @@
 * SOFTWARE.
 */
 
+import { ChangeInfo } from "./change_info";
+import { ComparisonOptions } from "./comparison_options";
+
 /**
- * Package version
+ * Comparison option class for updates endpoint
  */
-export const PackageVersion: string = "26.5.0";
+export class UpdatesOptions extends ComparisonOptions {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "changes",
+            baseName: "changes",
+            type: "Array<ChangeInfo>",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(UpdatesOptions.attributeTypeMap);
+    }
+
+    /**
+     * Changes to apply or reject. Used only for updates resource (/comparison/updates)
+     */
+    public changes: Array<ChangeInfo>;
+
+    public constructor(init?: Partial<UpdatesOptions>) {
+        super(init);
+        Object.assign(this, init);
+    }
+}
+
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace UpdatesOptions {
+}
+// tslint:enable:quotemark

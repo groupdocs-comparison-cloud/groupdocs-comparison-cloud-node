@@ -23,6 +23,15 @@
 */
 
 /**
- * Package version
+ * Request model for GetDiscUsage operation.
  */
-export const PackageVersion: string = "26.5.0";
+export class GetDiscUsageRequest {
+    /**
+     * Storage name
+     */
+    public storageName: string;
+
+    public constructor(storageName?: string) {
+        this.storageName = storageName;
+    }
+}

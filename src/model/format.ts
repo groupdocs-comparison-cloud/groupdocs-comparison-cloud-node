@@ -23,6 +23,44 @@
 */
 
 /**
- * Package version
+ * File-format
  */
-export const PackageVersion: string = "26.5.0";
+export class Format {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "extension",
+            baseName: "extension",
+            type: "string",
+        },
+        {
+            name: "fileFormat",
+            baseName: "fileFormat",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return Format.attributeTypeMap;
+    }
+
+    /**
+     * File format extension
+     */
+    public extension: string;
+
+    /**
+     * File format name
+     */
+    public fileFormat: string;
+
+    public constructor(init?: Partial<Format>) {
+
+        Object.assign(this, init);
+    }
+}

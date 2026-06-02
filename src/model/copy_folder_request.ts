@@ -23,6 +23,33 @@
 */
 
 /**
- * Package version
+ * Request model for CopyFolder operation.
  */
-export const PackageVersion: string = "26.5.0";
+export class CopyFolderRequest {
+    /**
+     * Source folder path e.g. '/src'
+     */
+    public srcPath: string;
+
+    /**
+     * Destination folder path e.g. '/dst'
+     */
+    public destPath: string;
+
+    /**
+     * Source storage name
+     */
+    public srcStorageName: string;
+
+    /**
+     * Destination storage name
+     */
+    public destStorageName: string;
+
+    public constructor(srcPath: string, destPath: string, srcStorageName?: string, destStorageName?: string) {
+        this.srcPath = srcPath;
+        this.destPath = destPath;
+        this.srcStorageName = srcStorageName;
+        this.destStorageName = destStorageName;
+    }
+}

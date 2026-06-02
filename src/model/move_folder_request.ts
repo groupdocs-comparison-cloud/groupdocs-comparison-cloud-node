@@ -23,6 +23,33 @@
 */
 
 /**
- * Package version
+ * Request model for MoveFolder operation.
  */
-export const PackageVersion: string = "26.5.0";
+export class MoveFolderRequest {
+    /**
+     * Folder path to move e.g. '/folder'
+     */
+    public srcPath: string;
+
+    /**
+     * Destination folder path to move to e.g '/dst'
+     */
+    public destPath: string;
+
+    /**
+     * Source storage name
+     */
+    public srcStorageName: string;
+
+    /**
+     * Destination storage name
+     */
+    public destStorageName: string;
+
+    public constructor(srcPath: string, destPath: string, srcStorageName?: string, destStorageName?: string) {
+        this.srcPath = srcPath;
+        this.destPath = destPath;
+        this.srcStorageName = srcStorageName;
+        this.destStorageName = destStorageName;
+    }
+}

@@ -22,7 +22,11 @@
 * SOFTWARE.
 */
 
-/**
- * Package version
- */
-export const PackageVersion: string = "26.5.0";
+export { CompareApi } from "./compare_api";
+export { FileApi } from "./file_api";
+export { FolderApi } from "./folder_api";
+export { InfoApi } from "./info_api";
+export { LicenseApi } from "./license_api";
+export { PreviewApi } from "./preview_api";
+export { ReviewApi } from "./review_api";
+export { StorageApi } from "./storage_api";

@@ -23,6 +23,27 @@
 */
 
 /**
- * Package version
+ * Request model for UploadFile operation.
  */
-export const PackageVersion: string = "26.5.0";
+export class UploadFileRequest {
+    /**
+     * Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext             If the content is multipart and path does not contains the file name it tries to get them from filename parameter             from Content-Disposition header.
+     */
+    public path: string;
+
+    /**
+     * File to upload
+     */
+    public file: Buffer;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+
+    public constructor(path: string, file: Buffer, storageName?: string) {
+        this.path = path;
+        this.file = file;
+        this.storageName = storageName;
+    }
+}

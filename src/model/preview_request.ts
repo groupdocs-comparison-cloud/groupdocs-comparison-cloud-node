@@ -22,7 +22,18 @@
 * SOFTWARE.
 */
 
+import { PreviewOptions } from "./preview_options";
+
 /**
- * Package version
+ * Request model for Preview operation.
  */
-export const PackageVersion: string = "26.5.0";
+export class PreviewRequest {
+    /**
+     * Preview options
+     */
+    public previewOptions: PreviewOptions;
+
+    public constructor(previewOptions: PreviewOptions) {
+        this.previewOptions = previewOptions;
+    }
+}

@@ -23,6 +23,44 @@
 */
 
 /**
- * Package version
+ * The error details
  */
-export const PackageVersion: string = "26.5.0";
+export class ErrorDetails {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "requestId",
+            baseName: "requestId",
+            type: "string",
+        },
+        {
+            name: "date",
+            baseName: "date",
+            type: "Date",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ErrorDetails.attributeTypeMap;
+    }
+
+    /**
+     * The request id
+     */
+    public requestId: string;
+
+    /**
+     * Date
+     */
+    public date: Date;
+
+    public constructor(init?: Partial<ErrorDetails>) {
+
+        Object.assign(this, init);
+    }
+}

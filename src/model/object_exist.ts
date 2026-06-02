@@ -23,6 +23,44 @@
 */
 
 /**
- * Package version
+ * Object exists
  */
-export const PackageVersion: string = "26.5.0";
+export class ObjectExist {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "exists",
+            baseName: "exists",
+            type: "boolean",
+        },
+        {
+            name: "isFolder",
+            baseName: "isFolder",
+            type: "boolean",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return ObjectExist.attributeTypeMap;
+    }
+
+    /**
+     * Indicates that the file or folder exists.
+     */
+    public exists: boolean;
+
+    /**
+     * True if it is a folder, false if it is a file.
+     */
+    public isFolder: boolean;
+
+    public constructor(init?: Partial<ObjectExist>) {
+
+        Object.assign(this, init);
+    }
+}

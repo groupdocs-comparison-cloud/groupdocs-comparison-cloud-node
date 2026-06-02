@@ -23,6 +23,44 @@
 */
 
 /**
- * Package version
+ * Class for disc space information.
  */
-export const PackageVersion: string = "26.5.0";
+export class DiscUsage {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "usedSize",
+            baseName: "usedSize",
+            type: "number",
+        },
+        {
+            name: "totalSize",
+            baseName: "totalSize",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return DiscUsage.attributeTypeMap;
+    }
+
+    /**
+     * Application used disc space.
+     */
+    public usedSize: number;
+
+    /**
+     * Total disc space.
+     */
+    public totalSize: number;
+
+    public constructor(init?: Partial<DiscUsage>) {
+
+        Object.assign(this, init);
+    }
+}

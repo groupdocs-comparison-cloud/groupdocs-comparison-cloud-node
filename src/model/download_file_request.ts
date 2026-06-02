@@ -23,6 +23,27 @@
 */
 
 /**
- * Package version
+ * Request model for DownloadFile operation.
  */
-export const PackageVersion: string = "26.5.0";
+export class DownloadFileRequest {
+    /**
+     * File path e.g. '/folder/file.ext'
+     */
+    public path: string;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+
+    /**
+     * File version ID to download
+     */
+    public versionId: string;
+
+    public constructor(path: string, storageName?: string, versionId?: string) {
+        this.path = path;
+        this.storageName = storageName;
+        this.versionId = versionId;
+    }
+}

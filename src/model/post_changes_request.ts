@@ -22,7 +22,18 @@
 * SOFTWARE.
 */
 
+import { ComparisonOptions } from "./comparison_options";
+
 /**
- * Package version
+ * Request model for PostChanges operation.
  */
-export const PackageVersion: string = "26.5.0";
+export class PostChangesRequest {
+    /**
+     * Comparison options
+     */
+    public comparisonOptions: ComparisonOptions;
+
+    public constructor(comparisonOptions: ComparisonOptions) {
+        this.comparisonOptions = comparisonOptions;
+    }
+}

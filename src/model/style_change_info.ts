@@ -23,6 +23,54 @@
 */
 
 /**
- * Package version
+ * StyleChangeInfo Object fields
  */
-export const PackageVersion: string = "26.5.0";
+export class StyleChangeInfo {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "changedProperty",
+            baseName: "changedProperty",
+            type: "string",
+        },
+        {
+            name: "oldValue",
+            baseName: "oldValue",
+            type: "string",
+        },
+        {
+            name: "newValue",
+            baseName: "newValue",
+            type: "string",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return StyleChangeInfo.attributeTypeMap;
+    }
+
+    /**
+     * Name of changed style
+     */
+    public changedProperty: string;
+
+    /**
+     * Value of changed style from source document
+     */
+    public oldValue: string;
+
+    /**
+     * Value of changed style from target document
+     */
+    public newValue: string;
+
+    public constructor(init?: Partial<StyleChangeInfo>) {
+
+        Object.assign(this, init);
+    }
+}

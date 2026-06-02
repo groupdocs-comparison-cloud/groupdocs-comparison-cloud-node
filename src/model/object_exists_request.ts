@@ -23,6 +23,27 @@
 */
 
 /**
- * Package version
+ * Request model for ObjectExists operation.
  */
-export const PackageVersion: string = "26.5.0";
+export class ObjectExistsRequest {
+    /**
+     * File or folder path e.g. '/file.ext' or '/folder'
+     */
+    public path: string;
+
+    /**
+     * Storage name
+     */
+    public storageName: string;
+
+    /**
+     * File version ID
+     */
+    public versionId: string;
+
+    public constructor(path: string, storageName?: string, versionId?: string) {
+        this.path = path;
+        this.storageName = storageName;
+        this.versionId = versionId;
+    }
+}

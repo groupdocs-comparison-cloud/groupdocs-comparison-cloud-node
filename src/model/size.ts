@@ -23,6 +23,44 @@
 */
 
 /**
- * Package version
+ * Item size
  */
-export const PackageVersion: string = "26.5.0";
+export class Size {
+
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            name: "width",
+            baseName: "width",
+            type: "number",
+        },
+        {
+            name: "height",
+            baseName: "height",
+            type: "number",
+        }    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return Size.attributeTypeMap;
+    }
+
+    /**
+     * Width of item
+     */
+    public width: number;
+
+    /**
+     * Height of item
+     */
+    public height: number;
+
+    public constructor(init?: Partial<Size>) {
+
+        Object.assign(this, init);
+    }
+}
