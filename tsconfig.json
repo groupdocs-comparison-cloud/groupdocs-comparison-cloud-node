@@ -5,6 +5,7 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "target": "ES6",
+        "moduleResolution": "node",
         "removeComments": false,
         "sourceMap": false,
         "noLib": false,
@@ -14,7 +15,8 @@
             "es6",
             "DOM",
             "scripthost"
-        ]
+        ],
+        "outDir": "lib"
     },
     "include": [
         "src/**/*"
